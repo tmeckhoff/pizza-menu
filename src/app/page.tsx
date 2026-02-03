@@ -1,16 +1,11 @@
-import Link from "next/link";
 import PizzaMenu from "./pizza-menu";
 
-async function getPizzas(searchParams: {
-  [key: string]: string | string[] | undefined;
-}) {
+async function getPizzas(searchParams: { search?: string }) {
   const params = new URLSearchParams();
 
-  Object.entries(searchParams).forEach(([key, value]) => {
-    if (typeof value === "string") {
-      params.set(key, value);
-    }
-  });
+  if (typeof searchParams.search === "string") {
+    params.set("search", searchParams.search);
+  }
 
   const res = await fetch(
     `http://localhost:3000/api/pizzas?${params.toString()}`,
@@ -27,14 +22,10 @@ async function getPizzas(searchParams: {
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { search?: string; page?: string };
+  searchParams: Promise<{ search?: string }>;
 }) {
-  const resolvedSearchParams = await searchParams;
-
-  const result = await getPizzas(resolvedSearchParams);
-
-  const currentPage = Number(resolvedSearchParams.page || 1);
-  const search = resolvedSearchParams.search || "";
+  const { search } = await searchParams;
+  const result = await getPizzas({ search });
 
   return (
     <main className="m-6 space-y-8">
@@ -43,7 +34,7 @@ export default async function Home({
         <input
           type="text"
           name="search"
-          defaultValue={search}
+          defaultValue={search || ""}
           placeholder="Search pizzas..."
           className="border px-3 py-2 rounded w-64"
         />
@@ -54,31 +45,7 @@ export default async function Home({
           Search
         </button>
       </form>
-
       <PizzaMenu pizzaData={result.data} />
-      <div className="flex gap-4 items-center">
-        {currentPage > 1 && (
-          <Link
-            href={`?search=${search}&page=${currentPage - 1}`}
-            className="text-blue-600"
-          >
-            Previous
-          </Link>
-        )}
-
-        <span>
-          Page {result.pagination.page} of {result.pagination.totalPages}
-        </span>
-
-        {currentPage < result.pagination.totalPages && (
-          <Link
-            href={`?search=${search}&page=${currentPage + 1}`}
-            className="text-blue-600"
-          >
-            Next
-          </Link>
-        )}
-      </div>
     </main>
   );
 }
