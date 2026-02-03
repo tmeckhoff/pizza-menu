@@ -1,15 +1,18 @@
 import { pizzaData } from "../../../../../db/pizzas";
-import { PizzaData } from "../../../../../types/pizza-data";
 
-export async function GET(request, { params }) {
-  const name = params.name;
-  let filtered = pizzaData;
+interface RouteContext {
+  params: {
+    name: string;
+  };
+}
+
+export async function GET(context: RouteContext) {
+  const name = context.params.name;
+  let filtered = pizzaData.pizzas;
 
   if (name) {
-    filtered = pizzaData.filter((x: PizzaData) =>
-      x.pizzas.map((p) => {
-        p.name.toLowerCase() === name;
-      }),
+    filtered = filtered.filter((pizza) =>
+      pizza.name.toLowerCase().includes(name),
     );
   }
 
