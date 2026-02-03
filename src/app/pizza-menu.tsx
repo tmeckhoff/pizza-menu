@@ -1,11 +1,4 @@
-import { Pizza } from "../types/pizza";
-import { PizzaSize } from "../types/pizza-size";
-
-interface PizzaData {
-  pizzas: Pizza[];
-  pizzaSizes: PizzaSize[];
-  pizzaToppings: string[];
-}
+import { PizzaData } from "../types/pizza-data";
 
 export default function PizzaMenu({ pizzaData }: { pizzaData: PizzaData }) {
   return (
