@@ -9,12 +9,9 @@ export async function GET(context: {
   let filtered = pizzaData.pizzas;
 
   if (name) {
-    filtered = filtered.filter((pizza) =>
-      pizza.name.toLowerCase().includes(name),
-    );
+    filtered = filtered.filter((pizza) => pizza.name.toLowerCase() === name);
   }
-
-  const data = pizzaData;
+  const data = { ...pizzaData, pizzas: filtered };
 
   return Response.json({ data });
 }

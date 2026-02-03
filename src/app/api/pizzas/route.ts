@@ -8,12 +8,9 @@ export async function GET(request: NextRequest) {
   let filtered = pizzaData.pizzas;
 
   if (name) {
-    filtered = filtered.filter((pizza) =>
-      pizza.name.toLowerCase().includes(name),
-    );
+    filtered = filtered.filter((pizza) => pizza.name.toLowerCase() === name);
   }
-
-  const data = pizzaData;
+  const data = filtered;
 
   return Response.json({ data });
 }
