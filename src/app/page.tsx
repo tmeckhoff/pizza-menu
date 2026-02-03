@@ -15,7 +15,7 @@ async function getPizzas() {
 function Loading() {
   return (
     <div className="w-full text-center mt-20 text-lg text-slate-600">
-      Loading advocates…
+      Loading pizzas…
     </div>
   );
 }
