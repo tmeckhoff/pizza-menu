@@ -1,5 +1,3 @@
-"use client";
-
 import { Pizza } from "../types/pizza";
 import { PizzaSize } from "../types/pizza-size";
 
