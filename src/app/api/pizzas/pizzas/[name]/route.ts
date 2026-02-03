@@ -1,12 +1,10 @@
 import { pizzaData } from "../../../../../db/pizzas";
 
-interface RouteContext {
+export async function GET(context: {
   params: {
     name: string;
   };
-}
-
-export async function GET(context: RouteContext) {
+}) {
   const name = context.params.name;
   let filtered = pizzaData.pizzas;
 
