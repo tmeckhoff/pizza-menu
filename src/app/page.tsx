@@ -1,4 +1,5 @@
 import PizzaMenu from "./pizza-menu";
+import CartButton from "../app/cart-button";
 
 async function getPizzas() {
   const res = await fetch("http://localhost:3000/api/pizzas");
@@ -20,6 +21,9 @@ export default async function Home() {
       </div>
       <div className="flex w-full items-center justify-between">
         <h2 className="text-2xl mb-6 text-slate-800">Menu</h2>
+      </div>
+      <div className="flex w-full items-center justify-between">
+        <CartButton />
       </div>
       <PizzaMenu pizzaData={pizzaData} />
     </main>

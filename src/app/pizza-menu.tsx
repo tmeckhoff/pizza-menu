@@ -1,4 +1,5 @@
 import { PizzaData } from "../types/pizza-data";
+import AddToCart from "./add-to-cart";
 
 export default function PizzaMenu({ pizzaData }: { pizzaData: PizzaData }) {
   return (
@@ -25,6 +26,7 @@ export default function PizzaMenu({ pizzaData }: { pizzaData: PizzaData }) {
                   </span>
                 ))}
               </div>
+              <AddToCart pizza={pizza} />
             </div>
           ))}
         </div>
