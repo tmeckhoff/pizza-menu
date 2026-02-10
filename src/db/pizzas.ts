@@ -1,4 +1,6 @@
-const pizzaData = {
+import { PizzaData } from "../types/pizza-data";
+
+const pizzaData: PizzaData = {
   pizzas: [
     {
       name: "Carnivore",
