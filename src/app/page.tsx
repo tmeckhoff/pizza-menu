@@ -30,7 +30,7 @@ export default async function Home({
 
   return (
     <main className="m-6 space-y-8">
-      <h1 className="text-2xl">My Pizzas</h1>
+      <h1 className="text-2xl">Tara's Pizzas</h1>
       <form className="flex gap-2">
         <input
           type="text"
@@ -46,6 +46,12 @@ export default async function Home({
           Search
         </button>
       </form>
+      <div className="flex w-full items-center justify-between">
+        <h2 className="text-2xl mb-6 text-slate-800">Menu</h2>
+      </div>
+      <div className="flex w-full items-center justify-between">
+        <CartButton />
+      </div>
       <PizzaMenu pizzaData={result.data} />
     </main>
   );
