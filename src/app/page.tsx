@@ -1,4 +1,5 @@
 import PizzaMenu from "./pizza-menu";
+import CartButton from "../app/cart-button";
 
 async function getPizzas(searchParams: { search?: string }) {
   const params = new URLSearchParams();
