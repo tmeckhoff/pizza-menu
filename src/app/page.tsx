@@ -30,7 +30,7 @@ export default async function Home({
 
   return (
     <main className="m-6 space-y-8">
-      <h1 className="text-2xl">Tara's Pizzas</h1>
+      <h1 className="text-2xl">Tara&apos;s Pizzas</h1>
       <form className="flex gap-2">
         <input
           type="text"

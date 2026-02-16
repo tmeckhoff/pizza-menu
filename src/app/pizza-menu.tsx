@@ -15,6 +15,9 @@ export default function PizzaMenu({ pizzaData }: { pizzaData: PizzaData }) {
               <h3 className="text-lg font-semibold text-slate-900 mb-3">
                 {pizza.name}
               </h3>
+              <p className="mb-3 text-sm font-medium text-slate-700">
+                ${pizza.price.toFixed(2)}
+              </p>
 
               <div className="flex flex-wrap gap-2">
                 {pizza.ingredients.map((ingredient) => (

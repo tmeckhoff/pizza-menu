@@ -5,6 +5,7 @@ const pizzaData: PizzaData = {
     {
       name: "Carnivore",
       ingredients: ["bacon", "sausage", "pepperoni", "hamburger"],
+      price: 21.06,
     },
     {
       name: "Supreme",
@@ -16,10 +17,12 @@ const pizzaData: PizzaData = {
         "green peppers",
         "green olives",
       ],
+      price: 21.06,
     },
     {
       name: "BBQ Chicken",
       ingredients: ["bacon", "chicken", "onions", "tomatoes", "BBQ sauce"],
+      price: 21.06,
     },
     {
       name: "Veggie",
@@ -30,14 +33,17 @@ const pizzaData: PizzaData = {
         "green olives",
         "black olives",
       ],
+      price: 21.06,
     },
     {
       name: "Artichoke Deluxe",
       ingredients: ["artichokes", "tomatoes", "green olives", "spinach"],
+      price: 21.06,
     },
     {
       name: "Chicken Alfredo",
       ingredients: ["chicken", "onions", "tomatoes", "alfredo sauce"],
+      price: 21.06,
     },
   ],
   pizzaSizes: [
