@@ -1,4 +1,5 @@
 import PizzaMenu from "./pizza-menu";
+import { Suspense } from "react";
 import CartButton from "../app/cart-button";
 
 async function getPizzas(searchParams: { search?: string }) {
@@ -17,7 +18,21 @@ async function getPizzas(searchParams: { search?: string }) {
     throw new Error("Failed to fetch pizzas!");
   }
 
-  return res.json();
+  const json = await res.json();
+  return json.data;
+}
+
+function Loading() {
+  return (
+    <div className="w-full text-center mt-20 text-lg text-slate-600">
+      Loading pizzas…
+    </div>
+  );
+}
+
+async function PizzasSection(searchParams: { search?: string }) {
+  const pizzaData = await getPizzas({ search: searchParams.search });
+  return <PizzaMenu pizzaData={pizzaData} />;
 }
 
 export default async function Home({
@@ -26,7 +41,6 @@ export default async function Home({
   searchParams: Promise<{ search?: string }>;
 }) {
   const { search } = await searchParams;
-  const result = await getPizzas({ search });
 
   return (
     <main className="m-6 space-y-8">
@@ -52,7 +66,9 @@ export default async function Home({
       <div className="flex w-full items-center justify-between">
         <CartButton />
       </div>
-      <PizzaMenu pizzaData={result.data} />
+      <Suspense fallback={<Loading />}>
+        <PizzasSection search={search} />
+      </Suspense>
     </main>
   );
 }
