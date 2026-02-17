@@ -3,12 +3,16 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
-  const name = searchParams.get("name");
+  const search = searchParams.get("search")?.toLowerCase() || "";
 
   let filtered = pizzaData.pizzas;
 
-  if (name) {
-    filtered = filtered.filter((pizza) => pizza.name.toLowerCase() === name);
+  if (search) {
+    filtered = filtered.filter(
+      (pizza) =>
+        pizza.name.toLowerCase().includes(search) ||
+        pizza.ingredients.some((i) => i.toLowerCase().includes(search)),
+    );
   }
 
   return NextResponse.json({
