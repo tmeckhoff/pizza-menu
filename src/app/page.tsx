@@ -1,4 +1,5 @@
 import PizzaMenu from "./pizza-menu";
+import { Suspense } from "react";
 import CartButton from "../app/cart-button";
 
 async function getPizzas() {
@@ -12,8 +13,20 @@ async function getPizzas() {
   return json.data;
 }
 
-export default async function Home() {
+function Loading() {
+  return (
+    <div className="w-full text-center mt-20 text-lg text-slate-600">
+      Loading pizzas…
+    </div>
+  );
+}
+
+async function PizzasSection() {
   const pizzaData = await getPizzas();
+  return <PizzaMenu pizzaData={pizzaData} />;
+}
+
+export default async function Home() {
   return (
     <main className="m-6">
       <div className="flex w-full items-center justify-between">
@@ -25,7 +38,9 @@ export default async function Home() {
       <div className="flex w-full items-center justify-between">
         <CartButton />
       </div>
-      <PizzaMenu pizzaData={pizzaData} />
+      <Suspense fallback={<Loading />}>
+        <PizzasSection />
+      </Suspense>
     </main>
   );
 }
