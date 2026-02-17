@@ -1,3 +1,3 @@
-import { Pizza } from "@/src/types/pizza";
+import { CartItem } from "@/src/types/cart-item";
 
-export const cart: Pizza[] = [];
+export const cart: CartItem[] = [];
