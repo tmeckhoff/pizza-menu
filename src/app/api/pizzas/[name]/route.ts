@@ -1,10 +1,12 @@
-import { pizzaData } from "../../../db/pizzas";
+import { pizzaData } from "../../../../db/pizzas";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  const name = searchParams.get("name");
-
+export async function GET(
+  req: NextRequest,
+  { params }: { params: { name: string } },
+) {
+  const reqParams = await params;
+  const name = reqParams.name.toLowerCase();
   let filtered = pizzaData.pizzas;
 
   if (name) {
